@@ -28,5 +28,6 @@ return {
         opts = {
             sources = { 'emoji', 'kaomoji', 'gitmoji' },
         },
+        enabled = false,
     }
 }
