@@ -4,7 +4,7 @@ if [[ $# -eq 1 ]]; then
     selected="$1"
 else
     additional_dirs="$HOME"
-    selected=$(find ~/work ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d | printf "%s\n" "$(cat -)" "$additional_dirs" | fzf)
+    selected=$(find ~/work ~/personal ~/onap ~/.config -mindepth 1 -maxdepth 1 -type d | printf "%s\n" "$(cat -)" "$additional_dirs" | fzf)
 fi
 
 if [[ -z $selected ]]; then

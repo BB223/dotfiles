@@ -26,3 +26,9 @@ local opts = {
 require("lazy").setup('plugins', opts)
 
 require('config.autocmds')
+
+local projectfile = vim.fn.getcwd() .. '/project.godot'
+if vim.fn.filereadable(projectfile) then
+    vim.fn.serverstart(vim.fn.expand('$HOME/.cache/nvim/godot-server.pipe'))
+end
+

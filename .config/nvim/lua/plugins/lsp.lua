@@ -16,7 +16,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         depencencies = {
-            "mason.nvim"
+            "williamboman/mason.nvim"
         },
         opts = {
             ensure_installed = { "lua_ls" },
@@ -24,34 +24,30 @@ return {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
                         capabilities = vim.tbl_deep_extend(
-                        "force",
-                        {},
-                        vim.lsp.protocol.make_client_capabilities(),
-                        require("cmp_nvim_lsp").default_capabilities())
-                    }
-                end,
-                ["pyright"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.pyright.setup {
-                        capabilities = vim.tbl_deep_extend(
                             "force",
-                            {},
                             vim.lsp.protocol.make_client_capabilities(),
-                            require("cmp_nvim_lsp").default_capabilities()
-                        ),
-                        settings = {
-                            python = {
-                                analysis = {
-                                    autoImportCompletion = true,
-                                    autoSearchPaths = true,
-                                    diagnosticMode = 'openFilesOnly',
-                                    useLibraryCodeForTypes = true,
-                                    typeCheckingMode = 'basic',
-                                }
-                            }
-                        },
+                            require("cmp_nvim_lsp").default_capabilities())
                     }
                 end,
+                -- ["pyright"] = function()
+                --     require("lspconfig").pyright.setup {
+                --         capabilities = vim.tbl_deep_extend(
+                --             "force",
+                --             vim.lsp.protocol.make_client_capabilities(),
+                --             require("cmp_nvim_lsp").default_capabilities()),
+                --         settings = {
+                --             python = {
+                --                 analysis = {
+                --                     autoImportCompletion = true,
+                --                     autoSearchPaths = true,
+                --                     diagnosticMode = 'openFilesOnly',
+                --                     useLibraryCodeForTypes = true,
+                --                     typeCheckingMode = 'basic',
+                --                 }
+                --             }
+                --         },
+                --     }
+                -- end,
                 -- ["lua_ls"] = function ()
                 --     local lspconfig = require("lspconfig")
                 --     lspconfig.lua_ls.setup {
@@ -90,8 +86,14 @@ return {
         config = function()
             local lspconfig = require('lspconfig')
             lspconfig.dartls.setup({})
-            require('java').setup()
-            lspconfig.jdtls.setup({})
+            -- require('java').setup()
+            -- lspconfig.jdtls.setup({})
+            lspconfig.gdscript.setup({
+                capabilities = vim.tbl_deep_extend(
+                    "force",
+                    vim.lsp.protocol.make_client_capabilities(),
+                    require("cmp_nvim_lsp").default_capabilities())
+            })
 
             vim.diagnostic.config({
                 float = {
@@ -122,5 +124,6 @@ return {
     },
     {
         "nvim-java/nvim-java",
+        enabled = false,
     },
 }
