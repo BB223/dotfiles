@@ -16,7 +16,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         depencencies = {
-            "williamboman/mason.nvim"
+            "williamboman/mason.nvim",
         },
         opts = {
             ensure_installed = { "lua_ls" },
@@ -29,6 +29,35 @@ return {
                             require("cmp_nvim_lsp").default_capabilities())
                     }
                 end,
+                ["jdtls"] = function()
+                    require('java').setup()
+                    require('lspconfig').jdtls.setup({
+                        capabilities = vim.tbl_deep_extend(
+                            'force',
+                            vim.lsp.protocol.make_client_capabilities(),
+                            require('cmp_nvim_lsp').default_capabilities()),
+                        flags = {
+                            allow_incremental_sync = true,
+                        },
+                        settings = {
+                            java = {
+                                configuration = {
+                                    runtimes = {
+                                        {
+                                            name = "JavaSE-21",
+                                            path = "/usr/lib/jvm/java-21-openjdk",
+                                            default = true
+                                        },
+                                        {
+                                            name = "JavaSE-17",
+                                            path = "/usr/lib/jvm/java-17-openjdk",
+                                        },
+                                    }
+                                }
+                            }
+                        }
+                    })
+                end
                 -- ["pyright"] = function()
                 --     require("lspconfig").pyright.setup {
                 --         capabilities = vim.tbl_deep_extend(
@@ -72,38 +101,17 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            --[[
-            {
-                'folke/neodev.nvim',
-                opts = {}
-            },
-            --]]
-
-            "mason-lspconfig.nvim",
-
+            "williamboman/mason-lspconfig.nvim",
             "j-hui/fidget.nvim",
         },
         config = function()
             local lspconfig = require('lspconfig')
             lspconfig.dartls.setup({})
-            -- require('java').setup()
-            -- lspconfig.jdtls.setup({})
             lspconfig.gdscript.setup({
                 capabilities = vim.tbl_deep_extend(
                     "force",
                     vim.lsp.protocol.make_client_capabilities(),
                     require("cmp_nvim_lsp").default_capabilities())
-            })
-
-            vim.diagnostic.config({
-                float = {
-                    focusable = false,
-                    style = "minimal",
-                    border = "rounded",
-                    source = true,
-                    header = "",
-                    prefix = "",
-                },
             })
         end
     },
@@ -124,6 +132,5 @@ return {
     },
     {
         "nvim-java/nvim-java",
-        enabled = false,
     },
 }

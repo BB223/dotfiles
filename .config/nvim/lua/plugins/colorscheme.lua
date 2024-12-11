@@ -9,13 +9,6 @@ return {
                 transparency = true,
             },
         },
-        config = function(_, opts)
-            require('rose-pine').setup(opts)
-            -- vim.cmd[[colorscheme rose-pine]]
-            -- vim.api.nvim_set_hl(0, 'LineNrAbove', { bold = true })
-            -- vim.api.nvim_set_hl(0, 'LineNr', { bold = true })
-            -- vim.api.nvim_set_hl(0, 'LineNrBelow', { bold = true })
-        end,
     },
     {
         "folke/tokyonight.nvim",
