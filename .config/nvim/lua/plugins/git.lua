@@ -4,8 +4,8 @@ return {
         event = 'BufWinEnter',
         keys = {
             { "<leader>gs", vim.cmd.Git },
-            { "dp", "<cmd>diffget LOCAL<CR>" },
-            { "do", "<cmd>diffget REMOTE<CR>" },
+            { "dp",         "<cmd>diffget LOCAL<CR>" },
+            { "do",         "<cmd>diffget REMOTE<CR>" },
         }
     },
     {

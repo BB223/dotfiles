@@ -1,3 +1,5 @@
+local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(),
+    require("cmp_nvim_lsp").default_capabilities())
 return {
     {
         "williamboman/mason.nvim",
@@ -22,20 +24,14 @@ return {
             ensure_installed = { "lua_ls" },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = vim.tbl_deep_extend(
-                            "force",
-                            vim.lsp.protocol.make_client_capabilities(),
-                            require("cmp_nvim_lsp").default_capabilities())
-                    }
+                    require("lspconfig")[server_name].setup({
+                        capabilities = capabilities
+                    })
                 end,
                 ["jdtls"] = function()
                     require('java').setup()
                     require('lspconfig').jdtls.setup({
-                        capabilities = vim.tbl_deep_extend(
-                            'force',
-                            vim.lsp.protocol.make_client_capabilities(),
-                            require('cmp_nvim_lsp').default_capabilities()),
+                        capabilities = capabilities,
                         flags = {
                             allow_incremental_sync = true,
                         },
@@ -58,43 +54,6 @@ return {
                         }
                     })
                 end
-                -- ["pyright"] = function()
-                --     require("lspconfig").pyright.setup {
-                --         capabilities = vim.tbl_deep_extend(
-                --             "force",
-                --             vim.lsp.protocol.make_client_capabilities(),
-                --             require("cmp_nvim_lsp").default_capabilities()),
-                --         settings = {
-                --             python = {
-                --                 analysis = {
-                --                     autoImportCompletion = true,
-                --                     autoSearchPaths = true,
-                --                     diagnosticMode = 'openFilesOnly',
-                --                     useLibraryCodeForTypes = true,
-                --                     typeCheckingMode = 'basic',
-                --                 }
-                --             }
-                --         },
-                --     }
-                -- end,
-                -- ["lua_ls"] = function ()
-                --     local lspconfig = require("lspconfig")
-                --     lspconfig.lua_ls.setup {
-                --         capabilities = vim.tbl_deep_extend(
-                --             "force",
-                --             {},
-                --             vim.lsp.protocol.make_client_capabilities(),
-                --             require("cmp_nvim_lsp").default_capabilities()
-                --         ),
-                --         settings = {
-                --             Lua = {
-                --                 diagnostics = {
-                --                     globals = { "vim" }
-                --                 }
-                --             }
-                --         }
-                --     }
-                -- end,
             }
         },
     },
@@ -102,16 +61,14 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
-            "j-hui/fidget.nvim",
         },
         config = function()
             local lspconfig = require('lspconfig')
-            lspconfig.dartls.setup({})
+            lspconfig.dartls.setup({
+                capabilities = capabilities
+            })
             lspconfig.gdscript.setup({
-                capabilities = vim.tbl_deep_extend(
-                    "force",
-                    vim.lsp.protocol.make_client_capabilities(),
-                    require("cmp_nvim_lsp").default_capabilities())
+                capabilities = capabilities
             })
         end
     },

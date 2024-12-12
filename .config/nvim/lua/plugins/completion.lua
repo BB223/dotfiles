@@ -1,6 +1,8 @@
 return {
     {
         'hrsh7th/nvim-cmp',
+        version = false,
+        event = "InsertEnter",
         dependencies = {
             "neovim/nvim-lspconfig",
             'hrsh7th/cmp-nvim-lsp',
@@ -29,6 +31,7 @@ return {
                     ['<C-Space>'] = cmp.mapping.complete(),
                 }),
                 sources = cmp.config.sources({
+                    { name = 'lazydev' },
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
                     { name = 'buffer' },
