@@ -29,7 +29,6 @@ return {
                     })
                 end,
                 ["jdtls"] = function()
-                    require('java').setup()
                     require('lspconfig').jdtls.setup({
                         capabilities = capabilities,
                         flags = {
@@ -89,5 +88,8 @@ return {
     },
     {
         "nvim-java/nvim-java",
+        config = function()
+            require('java').setup()
+        end
     },
 }
