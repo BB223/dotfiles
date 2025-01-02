@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+select_path() {
+    find ~/work ~/personal ~/onap ~/.config -mindepth 1 -maxdepth 1 -type d |
+        printf "%s\n" "$(cat -)" "$additional_dirs" |
+        fzf
+}
+
 if [[ $# -eq 1 ]]; then
     selected="$1"
 else
     additional_dirs="$HOME"
-    selected=$(find ~/work ~/personal ~/onap ~/.config -mindepth 1 -maxdepth 1 -type d | printf "%s\n" "$(cat -)" "$additional_dirs" | fzf)
+    selected=$(select_path)
 fi
 
 if [[ -z $selected ]]; then
@@ -13,7 +19,12 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
-    tmux has -t "$selected_name" >/dev/null 2>&1 || tmux new -d -s "$selected_name" -c "$selected"
-    tmux attach -t "$selected_name" >/dev/null 2>&1 || tmux switchc -t "$selected_name"
+if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+    tmux new-session -d -s "$selected_name" -c "$selected"
+fi
+
+if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$selected_name"
+else
+    tmux attach-session -t "$selected_name"
 fi
