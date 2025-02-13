@@ -47,6 +47,10 @@ return {
                                             name = "JavaSE-17",
                                             path = "/usr/lib/jvm/java-17-openjdk",
                                         },
+                                        {
+                                            name = "JavaSE-11",
+                                            path = "/usr/lib/jvm/java-11-openjdk",
+                                        },
                                     }
                                 }
                             }
@@ -59,6 +63,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            "nvim-java/nvim-java",
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
@@ -88,8 +93,10 @@ return {
     },
     {
         "nvim-java/nvim-java",
-        config = function()
-            require('java').setup()
+        opts = {
+        },
+        config = function(_, opts)
+            require('java').setup(opts)
         end
     },
 }
