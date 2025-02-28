@@ -99,4 +99,9 @@ return {
             require('java').setup(opts)
         end
     },
+    {
+        "p00f/clangd_extensions.nvim",
+        opts = {},
+        enabled = false,
+    },
 }

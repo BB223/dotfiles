@@ -19,43 +19,14 @@ return {
             { "<leader>dw", function() require("dap.ui.widgets").hover() end,                                     desc = "Widgets" },
         },
         config = function()
-            local dap = require('dap')
-            dap.adapters.godot = {
-                type = 'server',
-                host = '127.0.0.1',
-                port = 6006,
-            }
-            dap.configurations.gdscript = {
-                {
-                    type = "godot",
-                    request = "launch",
-                    name = "Launch scene",
-                    project = "${workspaceFolder}",
-                },
-            }
-            dap.adapters.gdb = {
-                type = "executable",
-                command = "gdb",
-                args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
-            }
-            dap.configurations.rust = {
-                {
-                    type = "gdb",
-                    request = "launch",
-                    name = "Launch",
-                    program = function()
-                        local job = vim.fn.jobstart('cargo build')
-                        vim.fn.jobwait({ job })
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
-                    end,
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                },
-            }
+            local dap, options = require('dap'), require('config.dap')
+            dap.adapters = options.adapters
+            dap.configurations = options.configurations
         end,
     },
     {
         'jay-babu/mason-nvim-dap.nvim',
+        event = "VeryLazy",
         dependencies = {
             'williamboman/mason.nvim',
             'mfussenegger/nvim-dap',
@@ -74,6 +45,7 @@ return {
     },
     {
         'rcarriga/nvim-dap-ui',
+        event = "VeryLazy",
         dependencies = {
             "mfussenegger/nvim-dap",
             "nvim-neotest/nvim-nio",
@@ -83,13 +55,13 @@ return {
             local dap, dapui = require('dap'), require('dapui')
             dapui.setup(opts)
             dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open({})
+                dapui.open()
             end
             dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close({})
+                dapui.close()
             end
             dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close({})
+                dapui.close()
             end
         end,
     },
