@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 select_path() {
-    find ~/personal ~/work ~/onap ~/.config -mindepth 1 -maxdepth 1 -type d |
+    find ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d |
         printf "%s\n" "$HOME" "$(cat -)" "$additional_dirs" |
         fzf
 }
