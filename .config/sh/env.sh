@@ -6,6 +6,7 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 # XDG dir fixes
 # config
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"
+export ANDROID_USER_HOME="$XDG_CONFIG_HOME"/.android
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle/config
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
