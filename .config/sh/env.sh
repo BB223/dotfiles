@@ -18,11 +18,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GOPATH="$XDG_DATA_HOME"/go
 export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
-if [[ -d "/mnt/d" ]]; then
-    export IPFS_PATH="/mnt/d/ipfs"
-else
-    export IPFS_PATH="$XDG_DATA_HOME"/ipfs
-fi
+export IPFS_PATH="$XDG_DATA_HOME"/ipfs
 # cache
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
