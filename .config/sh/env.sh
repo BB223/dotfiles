@@ -2,6 +2,7 @@ export EDITOR=nvim
 export LC_COLLATE="C.UTF-8"
 export GPG_TTY=$(tty)
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
 
 # XDG dir fixes
 # config
@@ -19,6 +20,7 @@ export GOPATH="$XDG_DATA_HOME"/go
 export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export IPFS_PATH="$XDG_DATA_HOME"/ipfs
+export RENPY_PATH_TO_SAVES="$XDG_DATA_HOME/renpy"
 # cache
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle

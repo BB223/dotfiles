@@ -9,6 +9,7 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 #DO NOT TOUCH ABOVE LINE
 #-----------------------------------------------------------------
 
+# completion
 source /usr/share/doc/git-extras/git-extras-completion.zsh
 # source <(arara --generate-completion zsh)
 
@@ -20,6 +21,7 @@ typeset -U path PATH
 path=($HOME/.local/bin $path)
 path+=("$GEM_HOME"/bin)
 path+=("$GOPATH"/bin)
+path+=("$CARGO_HOME"/bin)
 export PATH
 
 # Keybindings
@@ -30,7 +32,6 @@ bindkey -s ^f "^utmux-sessionizer^m"
 source "$XDG_CONFIG_HOME"/sh/alias.sh
 alias vi=nvim
 alias emulator="emulator -no-metrics"
-notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
 
 # Load nvm
 source /usr/share/nvm/init-nvm.sh
@@ -38,6 +39,8 @@ source /usr/share/nvm/init-nvm.sh
 # Load starship
 eval "$(starship init zsh)"
 
-if [[ -z "$TMUX" ]]; then
-    systemctl --user import-environment PATH IPFS_PATH
-fi
+startw () {
+    if uwsm check may-start && uwsm select; then
+        exec uwsm start default
+    fi
+}
