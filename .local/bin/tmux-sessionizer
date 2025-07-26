@@ -9,7 +9,7 @@ find_dirs() {
 }
 
 select_path() {
-    ( echo "$HOME"; find_git_dirs "$HOME/personal" "$HOME/onap" | sort -r; find_dirs "$HOME/.config" ) | fzf
+    ( echo "$HOME"; find_git_dirs "$HOME/personal" "$HOME/onap" "$HOME/work" | sort -r; find_dirs "$HOME/.config" ) | fzf
 }
 
 if [[ $# -eq 1 ]]; then
