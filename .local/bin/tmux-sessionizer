@@ -22,7 +22,7 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name="$(basename "$selected" | tr . _)__$(echo "$selected" | sha256sum | cut -c1-6)"
 
 if ! tmux has-session -t "$selected_name" 2>/dev/null; then
     tmux new-session -d -s "$selected_name" -c "$selected"
