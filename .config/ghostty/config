@@ -4,4 +4,5 @@ font-family = JetBrainsMono Nerd Font Mono
 font-size = 16
 confirm-close-surface = false
 title = ghostty
+cursor-style = bar
 command = tmux-sessionizer $HOME
