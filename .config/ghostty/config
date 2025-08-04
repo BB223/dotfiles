@@ -1,0 +1,7 @@
+theme = Alabaster Dark
+background-opacity = 0.8
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 16
+confirm-close-surface = false
+title = ghostty
+command = tmux-sessionizer $HOME
