@@ -1,44 +1,13 @@
-# ~/.config/starship/starship.toml
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
 command_timeout = 1000
-format = """$python$os$username$hostname$kubernetes$directory$git_branch$git_status"""
+format = '$os$all'
+# format = """$python$os$username$hostname$kubernetes$directory$git_branch$git_status"""
 
-# Drop ugly default prompt characters
-[character]
-success_symbol = ''
-error_symbol = ''
-
-# ---
-
-[os]
-format = '[$symbol](bold white) '
-disabled = false
-
-[os.symbols]
-Windows = ''
-Arch = '󰣇'
-Ubuntu = ''
-Macos = '󰀵'
-
-# ---
-
-# Shows the username
-[username]
-style_user = 'white bold'
-style_root = 'black bold'
-format = '[$user]($style) '
-disabled = false
-show_always = true
-
-# Shows the hostname
-[hostname]
-ssh_only = true
-format = 'on [$hostname](bold yellow) '
-disabled = false
-
-# Shows current directory
 [directory]
+disabled = false
 truncation_length = 1
 truncation_symbol = '…/'
 home_symbol = '󰋜 ~'
@@ -46,16 +15,20 @@ read_only_style = '197'
 read_only = '  '
 format = 'at [$path]($style)[$read_only]($read_only_style) '
 
-# Shows current git branch
 [git_branch]
+disabled = false
 symbol = ' '
 format = 'via [$symbol$branch]($style)'
-# truncation_length = 4
 truncation_symbol = '…/'
 style = 'bold green'
-
-# Shows current git status
+[git_commit]
+disabled = false
+[git_state]
+disabled = false
+[git_metrics]
+disabled = true
 [git_status]
+disabled = false
 format = '[$all_status$ahead_behind]($style) '
 style = 'bold green'
 conflicted = '🏳'
@@ -70,30 +43,218 @@ staged = '[++\($count\)](green)'
 renamed = '󰖷 '
 deleted = ' '
 
-# Shows kubernetes context and namespace
-[kubernetes]
-format = 'via [󱃾 $context\($namespace\)](bold purple) '
+[hostname]
 disabled = false
+ssh_only = true
+format = 'on [$hostname](bold yellow) '
 
-# ---
+[kubernetes]
+disabled = false
+format = 'via [󱃾 $context\($namespace\)](bold purple) '
 
-[vagrant]
+[os]
+disabled = false
+format = '[$symbol](bold white) '
+[os.symbols]
+Windows = ''
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
+
+[python]
+disabled = false
+format = '[(\($virtualenv\) )]($style)'
+
+[username]
+disabled = false
+style_user = 'white bold'
+style_root = 'black bold'
+format = '[$user]($style) '
+show_always = true
+
+[aws]
+disabled = true
+[azure]
+disabled = true
+[battery]
+disabled = true
+[buf]
+disabled = true
+[bun]
+disabled = true
+[c]
+disabled = true
+[cpp]
+disabled = true
+[character]
+disabled = true
+[cmake]
+disabled = true
+[cobol]
+disabled = true
+[cmd_duration]
+disabled = true
+[conda]
+disabled = true
+[container]
+disabled = true
+[crystal]
+disabled = true
+[daml]
+disabled = true
+[dart]
+disabled = true
+[deno]
 disabled = true
 
+[direnv]
+disabled = true
 [docker_context]
+disabled = true
+[dotnet]
+disabled = true
+[elixir]
+disabled = true
+[elm]
+disabled = true
+[env_var]
+disabled = true
+[erlang]
+disabled = true
+[fennel]
+disabled = true
+[fill]
+disabled = true
+[fossil_branch]
+disabled = true
+[fossil_metrics]
+disabled = true
+[gcloud]
+disabled = true
+
+[gleam]
+disabled = true
+[golang]
+disabled = true
+[guix_shell]
+disabled = true
+
+[gradle]
+disabled = false
+
+[haskell]
+disabled = true
+[haxe]
 disabled = true
 
 [helm]
+disabled = false
+
+[java]
+disabled = false
+
+[jobs]
+disabled = true
+[julia]
+disabled = true
+[kotlin]
 disabled = true
 
-[python]
-format = '[(\($virtualenv\) )]($style)'
-
+[line_break]
+disabled = true
+[localip]
+disabled = true
+[lua]
+disabled = true
+[memory_usage]
+disabled = true
+[meson]
+disabled = true
+[hg_branch]
+disabled = true
+[mise]
+disabled = true
+[mojo]
+disabled = true
+[nats]
+disabled = true
+[netns]
+disabled = true
+[nim]
+disabled = true
+[nix_shell]
+disabled = true
 [nodejs]
 disabled = true
-
-[ruby]
+[ocaml]
+disabled = true
+[odin]
+disabled = true
+[opa]
+disabled = true
+[openstack]
 disabled = true
 
+[package]
+disabled = true
+[perl]
+disabled = true
+[php]
+disabled = true
+[pijul_channel]
+disabled = true
+[pixi]
+disabled = true
+[pulumi]
+disabled = true
+[purescript]
+disabled = true
+
+[quarto]
+disabled = true
+[rlang]
+disabled = true
+[raku]
+disabled = true
+[red]
+disabled = true
+[ruby]
+disabled = true
+[rust]
+disabled = true
+[scala]
+disabled = true
+[shell]
+disabled = true
+[shlvl]
+disabled = true
+[singularity]
+disabled = true
+[solidity]
+disabled = true
+[spack]
+disabled = true
+
+[status]
+disabled = false
+
+[sudo]
+disabled = false
+
+[swift]
+disabled = true
 [terraform]
+disabled = true
+[time]
+disabled = true
+[typst]
+disabled = true
+
+[vagrant]
+disabled = true
+[vlang]
+disabled = true
+[vcsh]
+disabled = true
+[zig]
 disabled = true
