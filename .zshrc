@@ -2,10 +2,13 @@
 [ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
 HISTFILE="$XDG_STATE_HOME"/zsh/history
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache-$ZSH_VERSION
+[ -d "$XDG_DATA_HOME"/zsh/site-functions ] || mkdir -p "$XDG_DATA_HOME"/zsh/site-functions
+typeset -U fpath
+fpath=("$XDG_DATA_HOME/zsh/site-functions" $fpath)
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
-
 #DO NOT TOUCH ABOVE LINE
 #-----------------------------------------------------------------
 

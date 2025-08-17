@@ -1,0 +1,4 @@
+#compdef dotfiles=git
+#autoload
+
+_git || _files
