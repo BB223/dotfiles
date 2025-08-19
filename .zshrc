@@ -14,7 +14,7 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 
 # completion
 source /usr/share/doc/git-extras/git-extras-completion.zsh
-# source <(arara --generate-completion zsh)
+source <(arara --generate-completion zsh)
 
 source "$XDG_CONFIG_HOME"/sh/env.sh
 export GEM_HOME="$(gem env user_gemhome)"
@@ -22,9 +22,9 @@ export GEM_HOME="$(gem env user_gemhome)"
 # Path
 typeset -U path PATH
 path=($HOME/.local/bin $path)
-path+=("$GEM_HOME"/bin)
-path+=("$GOPATH"/bin)
 path+=("$CARGO_HOME"/bin)
+path+=("$GOPATH"/bin)
+path+=("$GEM_HOME"/bin)
 export PATH
 
 # Keybindings
