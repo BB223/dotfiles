@@ -1,8 +1,7 @@
 export EDITOR=nvim
 export LC_COLLATE="C.UTF-8"
 export GPG_TTY=$(tty)
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
+export QT_QPA_PLATFORMTHEME=qt6ct:qt5ct
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 # XDG dir fixes
