@@ -14,7 +14,7 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 
 # completion
 source /usr/share/doc/git-extras/git-extras-completion.zsh
-source <(arara --generate-completion zsh)
+# source <(arara --generate-completion zsh)
 
 source "$XDG_CONFIG_HOME"/sh/env.sh
 export GEM_HOME="$(gem env user_gemhome)"
@@ -47,3 +47,5 @@ startw () {
         exec uwsm start default
     fi
 }
+
+eval "$(direnv hook zsh)"
