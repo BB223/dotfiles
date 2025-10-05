@@ -36,9 +36,6 @@ source "$XDG_CONFIG_HOME"/sh/alias.sh
 alias vi=nvim
 alias emulator="emulator -no-metrics"
 
-# Load nvm
-source /usr/share/nvm/init-nvm.sh
-
 # Load starship
 eval "$(starship init zsh)"
 
@@ -48,4 +45,4 @@ startw () {
     fi
 }
 
-eval "$(direnv hook zsh)"
+eval "$(mise activate zsh)"
