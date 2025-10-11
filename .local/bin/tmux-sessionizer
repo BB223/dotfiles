@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 find_git_dirs() {
-    fd "\.git$" "$@" --type=d --hidden --exec dirname
+    fd "\.git$" "$@" --hidden --exec dirname
 }
 
 find_dirs() {
