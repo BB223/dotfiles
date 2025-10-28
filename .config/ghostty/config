@@ -6,3 +6,4 @@ confirm-close-surface = false
 title = ghostty
 cursor-style = bar
 command = tmux-sessionizer $HOME
+resize-overlay = never
