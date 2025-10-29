@@ -9,27 +9,48 @@ find_dirs() {
 }
 
 select_path() {
-    ( echo "$HOME"; find_git_dirs "$HOME/personal" "$HOME/work" | sort -r; find_dirs "$HOME/.config" ) | fzf
+    local -a paths git_dirs tail_dirs
+    paths+=("$HOME")
+    readarray -t git_dirs < <( find_git_dirs "$HOME/personal" "$HOME/work" | sort )
+    readarray -t tail_dirs < <( {
+        echo "$HOME/.local/bin"
+        find_dirs "$XDG_CONFIG_HOME"
+        } | sort
+    )
+    paths+=( "${git_dirs[@]}" )
+    paths+=( "${tail_dirs[@]}" )
+
+    printf '%s\n' "${paths[@]}" | fzf
 }
 
-if [[ $# -eq 1 ]]; then
-    selected="$1"
-else
-    selected=$(select_path)
-fi
+main() {
+    local selected selected_name
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
+    if [[ $# -eq 1 ]]; then
+        selected="$1"
+    else
+        selected=$( select_path )
+    fi
 
-selected_name="$(basename "$selected" | tr . _)__$(echo "$selected" | sha256sum | cut -c1-6)"
+    [[ -z "$selected" ]] && exit 0
 
-if ! tmux has-session -t "$selected_name" 2>/dev/null; then
-    tmux new-session -d -s "$selected_name" -c "$selected"
-fi
+    if [[ ! -d "$selected" ]]; then
+        echo "Error: '$selected' is not a directory" >&2
+        exit 1
+    fi
 
-if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$selected_name"
-else
-    tmux attach-session -t "$selected_name"
-fi
+    selected_name="$( basename "$selected" | tr . _ )__$( sha256sum <<<"$selected" | cut -c1-6 )"
+
+    if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+        tmux new-session -d -s "$selected_name" -c "$selected" \
+            || { echo 'tmux failed to start session' >&2; exit 1; }
+    fi
+
+    if [[ -n "$TMUX" ]]; then
+        tmux switch-client -t "$selected_name"
+    else
+        tmux attach-session -t "$selected_name"
+    fi
+}
+
+main "$@"
