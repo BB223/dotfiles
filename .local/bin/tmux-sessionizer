@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 find_git_dirs() {
-    fd "\.git$" "$@" --hidden --exec dirname
+    fd "\.git$" "$@" --hidden --format {//}
 }
 
 find_dirs() {
-    fd . "$@" --min-depth=1 --max-depth=1 --type=d
+    fd . "$@" --exact-depth=1 --type=d --format {.}
 }
 
 select_path() {
@@ -20,7 +20,12 @@ select_path() {
     paths+=( "${git_dirs[@]}" )
     paths+=( "${tail_dirs[@]}" )
 
-    printf '%s\n' "${paths[@]}" | fzf
+    printf '%s\n' "${paths[@]}" | fzf --tmux 80% --scheme=path
+}
+
+fatal() {
+    echo "$1" >&2
+    exit 1
 }
 
 main() {
@@ -35,15 +40,13 @@ main() {
     [[ -z "$selected" ]] && exit 0
 
     if [[ ! -d "$selected" ]]; then
-        echo "Error: '$selected' is not a directory" >&2
-        exit 1
+        fatal "'$selected' is not a directory" >&2
     fi
 
     selected_name="$( basename "$selected" | tr . _ )__$( sha256sum <<<"$selected" | cut -c1-6 )"
 
     if ! tmux has-session -t "$selected_name" 2>/dev/null; then
-        tmux new-session -d -s "$selected_name" -c "$selected" \
-            || { echo 'tmux failed to start session' >&2; exit 1; }
+        tmux new-session -d -s "$selected_name" -c "$selected" || fatal 'tmux failed to start session'
     fi
 
     if [[ -n "$TMUX" ]]; then
