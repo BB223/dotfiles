@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+main() {
+    local selected
+    selected="$(gopass ls --flat | rofi -dmenu -no-custom -kb-accept-alt "" -kb-custom-1 "Shift+Return")"
+    local ret="$?"
+    case "$ret" in
+        0)
+            gopass -c "$selected"
+            ;;
+        10)
+            gopass -c "$selected" username
+            ;;
+        *)
+            exit "$ret"
+            ;;
+    esac
+}
+
+main "$@"
