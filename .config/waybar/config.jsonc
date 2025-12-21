@@ -1,0 +1,29 @@
+{
+    "include": [
+        "$HOME/.config/waybar/modules.jsonc"
+    ],
+    "layer": "bottom",
+    "position": "top",
+    "modules-left": [
+        "clock",
+        "custom/weather",
+        "mpris"
+    ],
+    "modules-center": [
+        "idle_inhibitor",
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "tray",
+        "group/connections",
+        "group/hardware",
+        "group/audio",
+        "group/notify"
+    ],
+    "spacing": 4,
+    "mode": "dock",
+    "exclusive": true,
+    "fixed-center": true,
+    "passthrough": false,
+    "ipc": false
+}

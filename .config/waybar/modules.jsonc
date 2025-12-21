@@ -1,0 +1,304 @@
+{
+  "mpris": {
+    "format": "{title}·{artist}",
+    "tooltip-format": "{player}: {title} - {artist}"
+    // "max-length": 25
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": " $1"
+    },
+    "separate-outputs": true,
+    "max-length": 25
+  },
+  "clock": {
+    "interval": 1,
+    "format": " {:%H:%M:%S}",
+    "format-alt": " {:%H:%M   %A, %d %B}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "custom/weather": {
+    "interval": 3600,
+    "format": "{}°",
+    "tooltip": true,
+    "exec": "wttrbar --date-format '%d %B' --hide-conditions --nerd",
+    "return-type": "json"
+  },
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format": "{icon} {windows}",
+    "format-icons": {
+      "urgent": ""
+    },
+    "show-special": false,
+    "on-click": "activate",
+    "window-rewrite-default": "󰲋",
+    "window-rewrite": {
+      "class<com.mitchellh.ghostty>": "",
+      "class<firefox>": "",
+      "class<tor browser>": "",
+      "class<steam_app_\\d+>": "",
+      "class<spotify>": "",
+      "class<discord>": "",
+      "class<steam>": "",
+      "class<mpv>": "",
+      "class<hyprpolkitagent>": "󰒃",
+      "class<com.saivert.pwvucontrol|org.pulseaudio.pavucontrol>": "󱡫",
+      "class<org.kde.dolphin>": "󰝰",
+      "class<gimp>": "",
+      "class<org.pipewire.Helvum>": "󰓃",
+      "class<localsend>": "",
+      "class<Mullvad VPN>": "󰖂",
+      "class<calibre-gui>": "",
+      "class<calibre-ebook-viewer>": "",
+      "title<.*whatsapp.*>": "",
+      "title<.*gmail.*>": "󰊫",
+      "title<.*YouTube.*>": "",
+      "title<.*Picture-in-Picture.*>": "",
+      "title<.*github.*>": "",
+      "title<.*amazon.*>": "",
+      "title<.*reddit.*>": "",
+      "title<.*ChatGPT.*|.*Le Chat.*|.*Qwen.*|.*DeepSeek.*>": ""
+    }
+  },
+  "idle_inhibitor": {
+    "tooltip": true,
+    "tooltip-format-activated": "Idle_inhibitor active",
+    "tooltip-format-deactivated": "Idle_inhibitor not active",
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "group/notify": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/swaync",
+      "systemd-failed-units"
+    ]
+  },
+  "custom/swaync": {
+    "tooltip": true,
+    "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+    "format": "{} {icon} ",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "systemd-failed-units": {
+    "hide-on-ok": true,
+    "format": "✗ {nr_failed}",
+    "format-ok": "✓",
+    "system": true,
+    "user": true
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 4
+  },
+  "group/connections": {
+    "orientation": "inherit",
+    "modules": [
+      "network",
+      "bluetooth"
+    ]
+  },
+  "network": {
+    "interval": 2,
+    "format": "{ifname}",
+    "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-ethernet": "󰌘  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "󰌘 {ifname}: {ipaddr}",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "min-length": 24,
+    "max-length": 24,
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ]
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂳",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias}\t󰂄{device_battery_percentage}%",
+    "tooltip": true
+    // "on-click": "blueman-manager"
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": true,
+      "children-class": "cpu"
+    },
+    "modules": [
+      "temperature",
+      "cpu",
+      "power-profiles-daemon",
+      "memory"
+    ]
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 82,
+    "interval": 10,
+    "format": "{temperatureC}°C 󰈸",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{usage}% 󰍛",
+    "format-alt-click": "click",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
+    "format-icons": [
+      "<span color='#69ff94'>▁</span>", // green
+      "<span color='#2aa9ff'>▂</span>", // blue
+      "<span color='#f8f8f2'>▃</span>", // white
+      "<span color='#f8f8f2'>▄</span>", // white
+      "<span color='#ffffa5'>▅</span>", // yellow
+      "<span color='#ffffa5'>▆</span>", // yellow
+      "<span color='#ff9977'>▇</span>", // orange
+      "<span color='#dd532e'>█</span>" // red
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{used:0.1f}G 󰾆",
+    "format-alt": "{percentage}% 󰾆",
+    "format-alt-click": "click",
+    "tooltip": true,
+    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G"
+  },
+  "group/audio": {
+    "orientation": "inherit",
+    "modules": [
+      "pulseaudio#sound",
+      "pulseaudio#microphone"
+    ]
+  },
+  "pulseaudio#sound": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} 󰂰 {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "󰕾",
+        ""
+      ],
+      "ignored-sinks": [
+        "Easy Effects Sink"
+      ]
+    },
+    "scroll-step": 5.0,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pwvucontrol -t 4",
+    "on-click-middle": "helvum",
+    "tooltip-format": "{desc} | {volume}%",
+    "smooth-scrolling-threshold": 1,
+    "min-length": 6
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} 󰂰 {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "󰕾",
+        ""
+      ],
+      "ignored-sinks": [
+        "Easy Effects Sink"
+      ]
+    },
+    "scroll-step": 1.0,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pwvucontrol -t 4",
+    "on-click-middle": "helvum",
+    "tooltip-format": "{desc} | {volume}%",
+    "smooth-scrolling-threshold": 1,
+    "min-length": 6
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-middle": "helvum",
+    "on-click-right": "pwvucontrol -t 3",
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    "tooltip-format": "{source_desc} | {source_volume}%",
+    "min-length": 2
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "modules": []
+  }
+}
