@@ -1,0 +1,37 @@
+[column]
+	ui = auto
+[commit]
+	gpgsign = true
+[core]
+	autocrlf = input
+[diff]
+	algorithm = histogram
+	mnemonicPrefix = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+[gpg]
+	format = ssh
+[includeIf "gitdir:~/work/"]
+	path = work
+[include]
+	path = aliases
+[init]
+	defaultBranch = main
+[merge]
+	conflictStyle = diff3
+    tool = nvimdiff
+[mergetool]
+	keepBackup = false
+[pull]
+	ff = only
+[rerere]
+	enabled = true
+[tag]
+	sort = -version:refname
+[user]
+	email = 79644542+BB223@users.noreply.github.com
+	name = BB223
+	signingkey = ~/.ssh/id_ed25519.pub

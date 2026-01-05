@@ -1,13 +1,13 @@
 ; vim: set filetype=gitconfig:
 [alias]
-    co = checkout
-    br = branch
-    ci = commit
-    st = status -s
-    last = log -1 HEAD
     adog = log --all --decorate --oneline --graph
-    sta = status
-    rh = reset HEAD
-    cdf = clean -df
-    pr = pull --rebase
     amend = commit --amend --no-edit
+    br = branch
+    cdf = clean -df
+    ci = commit
+    co = checkout
+    last = log -1 HEAD
+    pr = pull --rebase
+    rh = reset HEAD
+    st = status -s
+    sta = status
