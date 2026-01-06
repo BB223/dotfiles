@@ -1,3 +1,7 @@
+[user]
+	email = 79644542+BB223@users.noreply.github.com
+	name = BB223
+	signingkey = ~/.ssh/id_ed25519.pub
 [column]
 	ui = auto
 [commit]
@@ -14,10 +18,6 @@
 	smudge = git-lfs smudge -- %f
 [gpg]
 	format = ssh
-[includeIf "gitdir:~/work/"]
-	path = work
-[include]
-	path = aliases
 [init]
 	defaultBranch = main
 [merge]
@@ -31,7 +31,7 @@
 	enabled = true
 [tag]
 	sort = -version:refname
-[user]
-	email = 79644542+BB223@users.noreply.github.com
-	name = BB223
-	signingkey = ~/.ssh/id_ed25519.pub
+[includeIf "gitdir:~/work/"]
+	path = work
+[include]
+	path = aliases
