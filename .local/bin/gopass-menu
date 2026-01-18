@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-main() {
+rofi-menu() {
     local selected
     selected="$(gopass ls --flat | rofi -dmenu -no-custom -kb-accept-alt "" -kb-custom-1 "Shift+Return")"
     local ret="$?"
@@ -17,4 +17,17 @@ main() {
     esac
 }
 
-main "$@"
+hyprlauncher-menu() {
+    local selected
+    selected="$(gopass ls --flat | hyprlauncher --dmenu)"
+
+    if [[ "$selected" == 'Exited without selection' ]]; then
+        exit 1
+    fi
+
+    gopass -c "$selected"
+}
+
+rofi-menu "$@"
+
+# hyprlauncher-menu "$@"

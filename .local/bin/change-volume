@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+get-volume-right() {
+    pactl --format json get-sink-volume @DEFAULT_SINK@ | jq -r '.volume."front-right".value'
+}
+
+increase-volume() {
+    pactl set-sink-volume @DEFAULT_SINK@ +1dB
+    if [[ $(get-volume-right) -ge 65520 ]]; then
+        pactl set-sink-volume @DEFAULT_SINK@ 30888 65520
+    fi
+}
+
+decrease-volume() {
+    pactl set-sink-volume @DEFAULT_SINK@ -1dB
+    if [[ $(get-volume-right) -le 70 ]]; then
+        pactl set-sink-volume @DEFAULT_SINK@ 33 70
+    fi
+}
+
+main() {
+    local opt OPTIND
+    while getopts 'id' opt; do
+        case "$opt" in
+            i) increase-volume;;
+            d) decrease-volume;;
+            *) exit 1;;
+        esac
+    done
+    shift $((OPTIND - 1))
+}
+
+main "$@"

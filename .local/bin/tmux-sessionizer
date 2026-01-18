@@ -5,7 +5,7 @@ find_git_dirs() {
 }
 
 find_dirs() {
-    fd . "$@" --exact-depth=1 --type=d --format {.}
+    fd . "$@" --exact-depth=1 --type=d --format {}
 }
 
 select_path() {

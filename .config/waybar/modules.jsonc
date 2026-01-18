@@ -1,8 +1,8 @@
 {
   "mpris": {
     "format": "{title}·{artist}",
-    "tooltip-format": "{player}: {title} - {artist}"
-    // "max-length": 25
+    "tooltip-format": "{player}: {title} - {artist}",
+    "max-length": 50
   },
   "hyprland/window": {
     "format": "{title}",
@@ -43,9 +43,6 @@
     "all-outputs": true,
     "disable-scroll": true,
     "format": "{icon} {windows}",
-    "format-icons": {
-      "urgent": ""
-    },
     "show-special": false,
     "on-click": "activate",
     "window-rewrite-default": "󰲋",
@@ -54,9 +51,11 @@
       "class<firefox>": "",
       "class<tor browser>": "",
       "class<steam_app_\\d+>": "",
+      "class<Minecraft \\d+\\.\\d+.*>": "󰍳",
       "class<spotify>": "",
       "class<discord>": "",
       "class<steam>": "",
+      "class<heroic>": "󱢾",
       "class<mpv>": "",
       "class<hyprpolkitagent>": "󰒃",
       "class<com.saivert.pwvucontrol|org.pulseaudio.pavucontrol>": "󱡫",
@@ -129,7 +128,7 @@
   "group/connections": {
     "orientation": "inherit",
     "modules": [
-      "network",
+      // "network",
       "bluetooth"
     ]
   },
@@ -245,13 +244,16 @@
         ""
       ],
       "ignored-sinks": [
-        "Easy Effects Sink"
+        "Easy Effects Sink",
+        "Equalizer Sink"
       ]
     },
     "scroll-step": 5.0,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pwvucontrol -t 4",
     "on-click-middle": "helvum",
+    "on-scroll-up": "change-volume -i",
+    "on-scroll-down": "change-volume -d",
     "tooltip-format": "{desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
     "min-length": 6
@@ -274,13 +276,16 @@
         ""
       ],
       "ignored-sinks": [
-        "Easy Effects Sink"
+        "Easy Effects Sink",
+        "Equalizer Sink"
       ]
     },
     "scroll-step": 1.0,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pwvucontrol -t 4",
     "on-click-middle": "helvum",
+    "on-scroll-up": "${XDG_CONFIG_HOME:-$HOME/.config}/waybar/scripts/change-volume -i",
+    "on-scroll-down": "${XDG_CONFIG_HOME:-$HOME/.config}/waybar/scripts/change-volume -d",
     "tooltip-format": "{desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
     "min-length": 6
@@ -300,5 +305,17 @@
   "group/power": {
     "orientation": "inherit",
     "modules": []
+  },
+  "gamemode": {
+    "format": "{glyph}",
+    "format-alt": "{glyph} {count}",
+    "glyph": "",
+    "hide-not-running": true,
+    "use-icon": true,
+    "icon-name": "input-gaming-symbolic",
+    "icon-spacing": 4,
+    "icon-size": 20,
+    "tooltip": true,
+    "tooltip-format": "Games running: {count}"
   }
 }

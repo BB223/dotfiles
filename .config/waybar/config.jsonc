@@ -14,6 +14,7 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "gamemode",
         "tray",
         "group/connections",
         "group/hardware",
