@@ -1,0 +1,83 @@
+@define-color bone #e1decc;
+@define-color purple-taupe #474145;
+@define-color ku-crimson #e70f0e;
+@define-color black #010101;
+
+@keyframes blink {
+  to {
+    color: @black;
+  }
+}
+
+window#waybar {
+  background-color: transparent;
+  font-size: 90%;
+  font-weight: 600;
+}
+
+tooltip {
+  background: @black;
+  border-color: @bone;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  color: @bone;
+  opacity: 0.8;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: @black;
+  border-radius: 10px;
+  color: @bone;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.module {
+  padding-top: 2px;
+  padding-right: 4px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+}
+
+#idle_inhibitor.activated {
+  color: @ku-crimson;
+}
+
+#workspaces button {
+  border-radius: 8px;
+  color: @purple-taupe;
+}
+
+#workspaces button:hover {
+  background-color: @purple-taupe;
+  border-color: @bone;
+  color: @bone;
+}
+
+#workspaces button.active {
+  color: @bone;
+}
+
+#workspaces button.urgent {
+  animation-direction: alternate;
+  animation-duration: 0.5s;
+  animation-iteration-count:infinite;
+  animation-name: blink;
+  animation-timing-function: steps(12);
+}
+
+#temperature.critical {
+  color: @ku-crimson;
+}
+
+#pulseaudio.sound.muted,
+#pulseaudio.microphone.source-muted {
+  color: @ku-crimson;
+}
+
+#systemd-failed-units {
+  color: @ku-crimson;
+}
