@@ -1,5 +1,6 @@
 theme = Alabaster Dark
 background-opacity = 0.8
+font-family = monospace
 font-size = 16
 confirm-close-surface = false
 title = ghostty

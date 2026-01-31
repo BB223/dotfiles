@@ -1,9 +1,16 @@
 configuration {
-    modes: "window,drun,run";
-    font: "JetBrainsMono Nerd Font Mono 15";
-    location: 0;
-    show-icons: true;
-    disable-history: true;
+   modes: [window,drun,run];
+   font: "monospace 15";
+   location: 0;
+   show-icons: true;
+   icon-theme: "breeze-dark";
+   disable-history: false;
+   sidebar-mode: true;
+   hover-select: false;
+   scroll-method: 0;
+   display-window: "  window" ;
+   display-run: " term";
+   display-drun: " apps";
   timeout {
       action: "kb-cancel";
       delay:  0;
