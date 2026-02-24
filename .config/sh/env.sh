@@ -3,12 +3,12 @@ export LC_COLLATE="C.UTF-8"
 export GPG_TTY=$(tty)
 export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # XDG dir fixes
 # config
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"
 export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
 export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"

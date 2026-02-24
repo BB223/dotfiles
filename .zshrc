@@ -31,6 +31,9 @@ append_path () {
 
 # completion
 safe_source '/usr/share/doc/git-extras/git-extras-completion.zsh'
+if command -v dotnet &> /dev/null; then
+    eval "$(dotnet completions script zsh)"
+fi
 
 safe_source "$XDG_CONFIG_HOME/sh/env.sh"
 

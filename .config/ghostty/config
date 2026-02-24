@@ -5,5 +5,5 @@ font-size = 16
 confirm-close-surface = false
 title = ghostty
 cursor-style = bar
-command = tmux-sessionizer $HOME
+command = tmux-sessionizer "$(pwd)"
 resize-overlay = never
