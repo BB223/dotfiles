@@ -43,10 +43,10 @@ fi
 
 # Path
 typeset -U path PATH
+path=("${GEM_HOME:+$GEM_HOME/bin}" $path)
+path=("${GOPATH:+$GOPATH/bin}" $path)
+path=("${CARGO_HOME:+$CARGO_HOME/bin}" $path)
 path=("$HOME/.local/bin" $path)
-append_path "${CARGO_HOME:+$CARGO_HOME/bin}"
-append_path "${GOPATH:+$GOPATH/bin}"
-append_path "${GEM_HOME:+$GEM_HOME/bin}"
 export PATH
 
 # Keybindings
@@ -63,4 +63,3 @@ fi
 if command -v mise &> /dev/null; then
     eval "$(mise activate zsh)"
 fi
-
