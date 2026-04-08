@@ -7,6 +7,5 @@ dotfiles() {
 }
 alias ll='ls -al'
 alias la='ls -A'
-alias grep='rg'
 alias pa-reset-balance='pactl set-sink-volume @DEFAULT_SINK@ 30888 65520'
 alias dust="dust --ignore-directory=$HOME/.local/share/containers/storage/overlay/"
