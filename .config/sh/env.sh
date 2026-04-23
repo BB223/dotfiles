@@ -1,7 +1,6 @@
 export EDITOR=nvim
 export LC_COLLATE="C.UTF-8"
 export GPG_TTY=$(tty)
-export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 

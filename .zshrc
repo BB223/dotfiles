@@ -1,11 +1,10 @@
 # Use XDG dirs for completion and history files
 [[ -d "$XDG_STATE_HOME/zsh" ]] || mkdir -p "$XDG_STATE_HOME/zsh"
 HISTFILE="$XDG_STATE_HOME/zsh/history"
-[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
-zstyle ':completion:*' use-cache on
 [[ -d "$XDG_DATA_HOME/zsh/site-functions" ]] || mkdir -p "$XDG_DATA_HOME/zsh/site-functions"
 typeset -U fpath
 fpath=("$XDG_DATA_HOME/zsh/site-functions" $fpath)
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 #DO NOT TOUCH ABOVE LINE
@@ -28,6 +27,11 @@ append_path () {
         path+=("$1")
     fi
 }
+prepend_path () {
+    if [[ -n "$1" && -d "$1" ]]; then
+        path=("$1" $path)
+    fi
+}
 
 # completion
 safe_source '/usr/share/doc/git-extras/git-extras-completion.zsh'
@@ -43,10 +47,10 @@ fi
 
 # Path
 typeset -U path PATH
-path=("${GEM_HOME:+$GEM_HOME/bin}" $path)
-path=("${GOPATH:+$GOPATH/bin}" $path)
-path=("${CARGO_HOME:+$CARGO_HOME/bin}" $path)
-path=("$HOME/.local/bin" $path)
+prepend_path "${GEM_HOME:+$GEM_HOME/bin}"
+prepend_path "${GOPATH:+$GOPATH/bin}"
+prepend_path "${CARGO_HOME:+$CARGO_HOME/bin}"
+prepend_path "$HOME/.local/bin"
 export PATH
 
 # Keybindings
