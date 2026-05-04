@@ -16,20 +16,23 @@ safe_source () {
     fi
 }
 
-startw () {
-    if uwsm check may-start; then
-        exec uwsm start -- hyprland.desktop
-    fi
-}
-
 append_path () {
     if [[ -n "$1" && -d "$1" ]]; then
         path+=("$1")
     fi
 }
+
 prepend_path () {
     if [[ -n "$1" && -d "$1" ]]; then
         path=("$1" $path)
+    fi
+}
+
+safe_source "$XDG_CONFIG_HOME/sh/env.sh"
+
+startw () {
+    if uwsm check may-start; then
+        exec uwsm start -- hyprland.desktop
     fi
 }
 
@@ -39,14 +42,12 @@ if command -v dotnet &> /dev/null; then
     eval "$(dotnet completions script zsh)"
 fi
 
-safe_source "$XDG_CONFIG_HOME/sh/env.sh"
-
 if command -v gem &> /dev/null; then
     export GEM_HOME="$(gem env user_gemhome)"
 fi
 
 # Path
-typeset -U path PATH
+prepend_path "${PNPM_HOME:+$PNPM_HOME}"
 prepend_path "${GEM_HOME:+$GEM_HOME/bin}"
 prepend_path "${GOPATH:+$GOPATH/bin}"
 prepend_path "${CARGO_HOME:+$CARGO_HOME/bin}"
