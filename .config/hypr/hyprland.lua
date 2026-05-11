@@ -1,0 +1,6 @@
+require('hyprland.configs')
+require('hyprland.monitors')
+require('hyprland.bindings')
+require('hyprland.apps')
+require('hyprland.workspaces')
+require('hyprland.permissions')

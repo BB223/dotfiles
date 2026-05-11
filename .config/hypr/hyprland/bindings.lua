@@ -1,0 +1,93 @@
+hl.bind('CTRL + ALT + Delete', hl.dsp.exec_cmd('uwsm stop'))
+hl.bind('SUPER + t', hl.dsp.exec_cmd('uwsm app -- ghostty'))
+hl.bind('SUPER + e', hl.dsp.exec_cmd('uwsm app -- dolphin'))
+hl.bind('SUPER + ALT + w', hl.dsp.window.close())
+hl.bind('SUPER + d', hl.dsp.exec_cmd('rofi -show drun -run-command "uwsm app -- {cmd}"'))
+hl.bind('CTRL + ALT + l', hl.dsp.exec_cmd('loginctl lock-session'))
+hl.bind('SUPER + f', hl.dsp.window.fullscreen({ mode = 'maximized' }))
+hl.bind('SUPER + ALT + f', hl.dsp.window.fullscreen({ mode = 'fullscreen' }))
+
+hl.bind('SUPER + b', hl.dsp.exec_cmd('uwsm app -- xdg-terminal-exec --title=bulletty -- bulletty'))
+
+hl.bind('SUPER + m', hl.dsp.send_shortcut({ mods = 'CTRL + SHIFT', key = 'm', window = 'class:discord' }))
+hl.bind('SUPER + p', hl.dsp.exec_cmd('gopass-menu'))
+
+hl.bind('SUPER + CTRL + ALT + B', hl.dsp.exec_cmd('pkill -SIGUSR1 waybar'))
+
+hl.bind('SUPER + h', hl.dsp.focus({ direction = 'left' }))
+hl.bind('SUPER + j', hl.dsp.focus({ direction = 'down' }))
+hl.bind('SUPER + k', hl.dsp.focus({ direction = 'up' }))
+hl.bind('SUPER + l', hl.dsp.focus({ direction = 'right' }))
+
+hl.bind('SUPER + SHIFT + h', hl.dsp.window.move({ direction = 'left' }))
+hl.bind('SUPER + SHIFT + j', hl.dsp.window.move({ direction = 'down' }))
+hl.bind('SUPER + SHIFT + k', hl.dsp.window.move({ direction = 'up' }))
+hl.bind('SUPER + SHIFT + l', hl.dsp.window.move({ direction = 'right' }))
+
+hl.bind('SUPER + SHIFT + n', hl.dsp.workspace.swap_monitors({ monitor1 = 'current', monitor2 = '+1' }))
+
+hl.bind('SUPER + 1', hl.dsp.focus({ workspace = 1 }))
+hl.bind('SUPER + 2', hl.dsp.focus({ workspace = 2 }))
+hl.bind('SUPER + 3', hl.dsp.focus({ workspace = 3 }))
+hl.bind('SUPER + 4', hl.dsp.focus({ workspace = 4 }))
+hl.bind('SUPER + 5', hl.dsp.focus({ workspace = 5 }))
+hl.bind('SUPER + 6', hl.dsp.focus({ workspace = 6 }))
+hl.bind('SUPER + 7', hl.dsp.focus({ workspace = 7 }))
+hl.bind('SUPER + 8', hl.dsp.focus({ workspace = 8 }))
+hl.bind('SUPER + 9', hl.dsp.focus({ workspace = 9 }))
+hl.bind('SUPER + 0', hl.dsp.focus({ workspace = 10 }))
+
+hl.bind('SUPER + SHIFT + 1', hl.dsp.window.move({ workspace = 1 }))
+hl.bind('SUPER + SHIFT + 2', hl.dsp.window.move({ workspace = 2 }))
+hl.bind('SUPER + SHIFT + 3', hl.dsp.window.move({ workspace = 3 }))
+hl.bind('SUPER + SHIFT + 4', hl.dsp.window.move({ workspace = 4 }))
+hl.bind('SUPER + SHIFT + 5', hl.dsp.window.move({ workspace = 5 }))
+hl.bind('SUPER + SHIFT + 6', hl.dsp.window.move({ workspace = 6 }))
+hl.bind('SUPER + SHIFT + 7', hl.dsp.window.move({ workspace = 7 }))
+hl.bind('SUPER + SHIFT + 8', hl.dsp.window.move({ workspace = 8 }))
+hl.bind('SUPER + SHIFT + 9', hl.dsp.window.move({ workspace = 9 }))
+hl.bind('SUPER + SHIFT + 0', hl.dsp.window.move({ workspace = 10 }))
+
+hl.bind('ALT + 1', hl.dsp.exec_cmd('try_swap_workspace 1'))
+hl.bind('ALT + 2', hl.dsp.exec_cmd('try_swap_workspace 2'))
+hl.bind('ALT + 3', hl.dsp.exec_cmd('try_swap_workspace 3'))
+hl.bind('ALT + 4', hl.dsp.exec_cmd('try_swap_workspace 4'))
+hl.bind('ALT + 5', hl.dsp.exec_cmd('try_swap_workspace 5'))
+hl.bind('ALT + 6', hl.dsp.exec_cmd('try_swap_workspace 6'))
+hl.bind('ALT + 7', hl.dsp.exec_cmd('try_swap_workspace 7'))
+hl.bind('ALT + 8', hl.dsp.exec_cmd('try_swap_workspace 8'))
+hl.bind('ALT + 9', hl.dsp.exec_cmd('try_swap_workspace 9'))
+hl.bind('ALT + 0', hl.dsp.exec_cmd('try_swap_workspace 10'))
+
+hl.bind('SUPER + r', hl.dsp.submap('resize'))
+
+hl.define_submap('resize', function()
+  hl.bind('h', hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+  hl.bind('j', hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+  hl.bind('k', hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+  hl.bind('l', hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+
+  hl.bind('ESCAPE', hl.dsp.submap('reset'))
+end)
+
+hl.bind("ALT + period", hl.dsp.window.float())
+hl.bind("SHIFT + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind("SHIFT + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+hl.bind('XF86Tools', hl.dsp.exec_cmd('wpctl set-mute @DEFAUTL_AUDIO_SOURCE@ toggle'), { locked = true })
+hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd('change-volume -d'), { locked = true, repeating = true })
+hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd('change-volume -i'), { locked = true, repeating = true })
+hl.bind('XF86AudioMute', hl.dsp.exec_cmd('wpctl set-mute @DEFAUTL_AUDIO_SINK@ toggle'), { locked = true })
+
+-- hl.bind('XF86AudioStop', hl.dsp.exec_cmd('notify-send AudioStop'))
+hl.bind('XF86AudioPrev', hl.dsp.exec_cmd('playerctl previous'), { locked = true })
+hl.bind('XF86AudioPlay', hl.dsp.exec_cmd('playerctl play-pause'), { locked = true })
+hl.bind('XF86AudioNext', hl.dsp.exec_cmd('playerctl next'), { locked = true })
+
+-- hl.bind('XF86Mail', hl.dsp.exec_cmd('notify-send Mail'))
+-- hl.bind('XF86HomePage', hl.dsp.exec_cmd('notify-send HomePage'))
+-- hl.bind('XF86Calculator', hl.dsp.exec_cmd('notify-send Calculator'))
+
+hl.bind('PRINT', hl.dsp.exec_cmd('grimblast --notify --openparentdir save output'))
+hl.bind('SUPER + PRINT', hl.dsp.exec_cmd('grimblast --notify --openparentdir save active'))
+hl.bind('SHIFT + PRINT', hl.dsp.exec_cmd('grimblast --notify --openparentdir --freeze save area'))
