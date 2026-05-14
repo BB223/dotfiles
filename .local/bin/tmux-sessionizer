@@ -11,7 +11,7 @@ find_dirs() {
 select_path() {
     local -a paths git_dirs tail_dirs
     paths+=("$HOME")
-    readarray -t git_dirs < <( find_git_dirs "$HOME/personal" "$HOME/work" | sort )
+    readarray -t git_dirs < <( find_git_dirs $(xdg-user-dir PROJECTS) | sort )
     readarray -t tail_dirs < <( {
         echo "$HOME/.local/bin"
         find_dirs "$XDG_CONFIG_HOME"
