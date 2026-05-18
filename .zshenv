@@ -1,7 +1,7 @@
 export EDITOR=nvim
+export SUDO_EDITOR="$EDITOR"
 export LC_COLLATE="C.UTF-8"
-export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # XDG dir fixes
@@ -27,3 +27,33 @@ export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+
+
+if command -v gem &> /dev/null; then
+    export GEM_HOME="$(gem env user_gemhome)"
+fi
+
+typeset -U path
+append_path () {
+    if [[ -n "$1" && -d "$1" ]]; then
+        path+=("$1")
+    fi
+}
+prepend_path () {
+    if [[ -n "$1" && -d "$1" ]]; then
+        path=("$1" $path)
+    fi
+}
+prepend_path "${PNPM_HOME:+$PNPM_HOME}"
+prepend_path "${GEM_HOME:+$GEM_HOME/bin}"
+prepend_path "${GOPATH:+$GOPATH/bin}"
+prepend_path "${CARGO_HOME:+$CARGO_HOME/bin}"
+prepend_path "$HOME/.local/bin"
+export PATH
+
+
+startw () {
+    if uwsm check may-start; then
+        exec uwsm start -- hyprland.desktop
+    fi
+}
