@@ -1,0 +1,9 @@
+#compdef dots=git
+
+_dots() {
+  _alternative \
+    'git:: _git' \
+    'default:: _default'
+}
+
+_dots "$@"
