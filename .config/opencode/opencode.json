@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "share": "disabled",
+  "model": "ollama/gemma4:26b",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://ollama.localhost:8000/v1"
+      },
+      "models": {
+        "gemma4:26b": {
+          "options": {
+            "reasoningEffort": "none"
+          },
+          "name": "Gemma 4 26B"
+        }
+      }
+    }
+  }
+}
