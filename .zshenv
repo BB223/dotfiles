@@ -3,6 +3,7 @@ export SUDO_EDITOR="$EDITOR"
 export LC_COLLATE="C.UTF-8"
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export MANPAGER='nvim +Man!'
 
 # XDG dir fixes
 # config

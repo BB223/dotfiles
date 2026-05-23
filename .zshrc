@@ -27,12 +27,15 @@ if command -v dotnet &> /dev/null; then
     eval "$(dotnet completions script zsh)"
 fi
 # Keybindings
-tmux-sessionizer() {
-    command tmux-sessionizer
-}
 bindkey -v
-zle -N tmux-sessionizer
-bindkey ^f tmux-sessionizer
+
+if command -v tmux-sessionizer &> /dev/null; then
+    widget-tmux-sessionizer() {
+        tmux-sessionizer
+    }
+    zle -N widget-tmux-sessionizer
+    bindkey '^f' widget-tmux-sessionizer
+fi
 
 # aliases
 safe_source "$XDG_CONFIG_HOME/sh/alias.sh"
