@@ -37,6 +37,10 @@ if command -v tmux-sessionizer &> /dev/null; then
     bindkey '^f' widget-tmux-sessionizer
 fi
 
+print-path() {
+    echo $PATH | tr ':' '\n'
+}
+
 # aliases
 safe_source "$XDG_CONFIG_HOME/sh/alias.sh"
 

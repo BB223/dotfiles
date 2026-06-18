@@ -45,7 +45,7 @@ prepend_path () {
         path=("$1" $path)
     fi
 }
-prepend_path "${PNPM_HOME:+$PNPM_HOME}"
+prepend_path "${PNPM_HOME:+$PNPM_HOME/bin}"
 prepend_path "${GEM_HOME:+$GEM_HOME/bin}"
 prepend_path "${GOPATH:+$GOPATH/bin}"
 prepend_path "${CARGO_HOME:+$CARGO_HOME/bin}"

@@ -3,7 +3,7 @@
 
 add_newline = false
 command_timeout = 1000
-format = '$status$python$os$all'
+format = "$status$python$os$all\nλ "
 
 [directory]
 disabled = false

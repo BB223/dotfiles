@@ -1,5 +1,5 @@
 background-opacity = 0.8
-command = tmux-sessionizer "$(pwd)"
+command = /home/bzell/.local/share/cargo/bin/tmux-sessionizer "$(pwd)"
 confirm-close-surface = false
 cursor-style-blink = false
 font-family = monospace
